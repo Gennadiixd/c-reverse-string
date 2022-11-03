@@ -1,22 +1,31 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 int main()
 {
-
-  char str[10];
-  char strReversed[10];
+  char str[100];
+  char *strReversedPtr;
 
   printf("Enter a value :");
   scanf("%s", str);
 
+  strReversedPtr = (char *)malloc(strlen(str) * sizeof(char));
+
   int i;
   for (i = strlen(str) - 1; i >= 0; i = i - 1)
   {
-    strReversed[strlen(str) - i] = str[i];
+    *strReversedPtr = str[i];
+    strReversedPtr++;
   }
 
-  printf("\nYour reversed string: %s ", strReversed);
+  // for (i = strlen(str) - 1; i >= 0; i = i - 1)
+  // {
+  //   strReversedPtr--;
+  // }
+
+  // while (*strReversedPtr != '\0')
+  //   printf("%c", *strReversedPtr++);
 
   return 0;
 
