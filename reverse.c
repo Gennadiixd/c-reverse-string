@@ -2,45 +2,60 @@
 #include <string.h>
 #include <stdlib.h>
 
-int main()
+char *read_line_cli()
 {
-  char str[100];
-  char *strReversedPtr;
+  char *str = NULL;
+  size_t size = 0, index = 0;
+  int current_char = EOF;
+  int CHUNKSIZE = 5 * sizeof(char);
 
-  printf("Enter a value :");
-  scanf("%s", str);
-
-  strReversedPtr = (char *)malloc(strlen(str) * sizeof(char));
-
-  int i;
-  for (i = strlen(str) - 1; i >= 0; i = i - 1)
+  while (current_char)
   {
-    *strReversedPtr = str[i];
-    strReversedPtr++;
+    current_char = getc(stdin);
+
+    /* Check if we need to stop. */
+    if (current_char == EOF || current_char == '\n')
+      current_char = 0;
+
+    /* Check if we need to expand. */
+    if (size <= index)
+    {
+      size += CHUNKSIZE;
+      str = realloc(str, size);
+      if (!str)
+      {
+        free(str);
+        str = NULL;
+        break;
+      }
+    }
+
+    /* Actually store the thing. */
+    str[index++] = current_char;
   }
 
-  // for (i = strlen(str) - 1; i >= 0; i = i - 1)
-  // {
-  //   strReversedPtr--;
-  // }
+  return str;
+}
 
-  // while (*strReversedPtr != '\0')
-  //   printf("%c", *strReversedPtr++);
+char *reverse(char *str)
+{
+  char *reversed;
+  reversed = (char *)malloc(sizeof(str));
 
-  return 0;
+  int len = strlen(str);
+  int i;
+  for (i = 0; i < len; i = i + 1)
+  {
+    *(reversed + i) = str[len - 1 - i];
+  }
 
-  // char hello[] = "Hello";
-  // char world[] = "World";
-  // char greeting[13];
+  return reversed;
+};
 
-  // strcat(greeting, hello);
-  // strcat(greeting, " ");
-  // strcat(greeting, world);
+int main()
+{
+  char *str_from_cli = read_line_cli();
+  char *str_reversed = reverse(str_from_cli);
 
-  // int l = strlen(greeting);
-
-  // printf("Greeting message: %s\n", greeting);
-  // printf("greeting length is %d\n", l);
-
-  // return 0;
+  printf("%s", str_reversed);
 }
