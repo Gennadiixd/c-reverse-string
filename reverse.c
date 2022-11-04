@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <math.h>
 
 char *read_line_cli()
 {
@@ -26,7 +27,7 @@ char *read_line_cli()
       {
         free(str);
         str = NULL;
-        break;
+        exit(1);
       }
     }
 
@@ -37,7 +38,7 @@ char *read_line_cli()
   return str;
 }
 
-char *reverse(char *str)
+char *reverseWOutMutation(char *str)
 {
   char *reversed;
   reversed = (char *)malloc(sizeof(str));
@@ -52,10 +53,22 @@ char *reverse(char *str)
   return reversed;
 };
 
+char *reverseWMutation(char *str)
+{
+  int len = strlen(str);
+  int i;
+  for (i = 0; i < ceil(len / 2); i = i + 1)
+  {
+    char tmp = str[i];
+    *(str + i) = str[len - 1 - i];
+    *(str + len - 1 - i) = tmp;
+  }
+};
+
 int main()
 {
   char *str_from_cli = read_line_cli();
-  char *str_reversed = reverse(str_from_cli);
+  reverseWMutation(str_from_cli);
 
-  printf("%s", str_reversed);
+  printf("%s", str_from_cli);
 }
