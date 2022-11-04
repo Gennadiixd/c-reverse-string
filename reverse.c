@@ -53,7 +53,7 @@ char *reverseWOutMutation(char *str)
   return reversed;
 };
 
-char *reverseWMutation(char *str)
+char *reverseInPlace(char *str)
 {
   int len = strlen(str);
   int i;
@@ -68,7 +68,7 @@ char *reverseWMutation(char *str)
 int main()
 {
   char *str_from_cli = read_line_cli();
-  reverseWMutation(str_from_cli);
+  reverseInPlace(str_from_cli);
 
   printf("%s", str_from_cli);
 }
