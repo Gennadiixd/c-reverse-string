@@ -1,4 +1,6 @@
 #include <iostream>
+#include <cmath>
+#include <cstring>
 using namespace std;
 
 string get_reversed(string str)
@@ -13,14 +15,32 @@ string get_reversed(string str)
   return reversed;
 }
 
+void reverse_in_place(string *str)
+{
+  &str[1] = "x"
+  // string *p = &str[1];
+  // *p = "x";
+
+  // int len = strlen(*str);
+  // int i;
+  // for (i = 0; i < floor(len / 2); i = i + 1)
+  // {
+  //   *str[i] = 'd';
+  // }
+
+  
+}
+
 int main()
 {
   string str;
   cin >> str;
 
-  string reversed = get_reversed(str);
+  string *ptr = &str;
 
-  cout << reversed;
+  reverse_in_place(ptr);
+
+  cout << *ptr;
 
   return 0;
 }
