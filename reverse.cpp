@@ -15,20 +15,14 @@ string get_reversed(string str)
   return reversed;
 }
 
-void reverse_in_place(string *str)
+void reverse_in_place(std::string &str)
 {
-  &str[1] = "x"
-  // string *p = &str[1];
-  // *p = "x";
-
-  // int len = strlen(*str);
-  // int i;
-  // for (i = 0; i < floor(len / 2); i = i + 1)
-  // {
-  //   *str[i] = 'd';
-  // }
-
-  
+  int len = str.length();
+  int i;
+  for (i = 0; i < floor(len / 2); i = i + 1)
+  {
+    swap(str[i], str[len - 1 - i]);
+  }
 }
 
 int main()
@@ -36,11 +30,9 @@ int main()
   string str;
   cin >> str;
 
-  string *ptr = &str;
+  reverse_in_place(str);
 
-  reverse_in_place(ptr);
-
-  cout << *ptr;
+  cout << str;
 
   return 0;
 }
