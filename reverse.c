@@ -38,7 +38,7 @@ char *read_line_cli()
   return str;
 }
 
-char *reverseWOutMutation(char *str)
+char *get_reversed(char *str)
 {
   char *reversed;
   reversed = (char *)malloc(sizeof(str));
@@ -53,7 +53,7 @@ char *reverseWOutMutation(char *str)
   return reversed;
 };
 
-char *reverseInPlace(char *str)
+char *reverse_in_place(char *str)
 {
   int len = strlen(str);
   int i;
@@ -68,7 +68,7 @@ char *reverseInPlace(char *str)
 int main()
 {
   char *str_from_cli = read_line_cli();
-  reverseInPlace(str_from_cli);
+  reverse_in_place(str_from_cli);
 
   printf("%s", str_from_cli);
 }
