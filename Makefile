@@ -7,6 +7,6 @@ run-c:
 
 
 run-cpp:
-	g++ -o reverse_cpp reverse.cpp
+	g++ -o reverse_cpp reverse.cpp 
 	mv ./reverse_cpp ./bin
 	./bin/reverse_cpp
